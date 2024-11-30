@@ -109,7 +109,7 @@ function onMessageReceived(payload) {
         
         if(username==message.sender)
             {
-                messageElement.style['background-color'] = '#E5E1DA';
+                messageElement.classList.add("user");
             }
 
         var usernameElement = document.createElement('span');
@@ -125,30 +125,19 @@ function onMessageReceived(payload) {
     var timeStampElement = document.createElement('p');
     var timestampText = document.createTextNode(message.timestamp);
 
-    // timeStamp.classList.add("timestamp"); 
+     
 
     textElement.appendChild(messageText);
     messageElement.appendChild(textElement);
 
     timeStampElement.appendChild(timestampText);
     messageElement.appendChild(timeStampElement);
+    timeStampElement.classList.add("timestamp");
 
     messageArea.appendChild(messageElement);
     messageArea.scrollTop = messageArea.scrollHeight;
 }
 
-
-function getDiff(date){
-
-    const hr = date.getHours();
-    const min = date.getMinutes();
-
-    const current = new Date();
-    const currentHr = current.getHours();
-    const currentMin = current.getMinutes();
-
-   return Math.floor(((currentHr - hr)*60 - (currentMin - min))/60);
-}
 
 function getAvatarColor(messageSender) {
     var hash = 0;

@@ -176,32 +176,78 @@ button.accent {
     word-wrap: break-word;
 }
 
+/* Chat bubble container */
 #chat-page .chat-message {
-    padding-left: 68px;
-    position: relative;
+    padding: 10px 15px; /* Inner padding for the chat bubble */
+    max-width: 70%; /* Limit bubble width */
+    margin: 10px 0; /* Vertical spacing between messages */
+    border-radius: 15px; /* Rounded corners */
+    background-color: #f1f0f0; /* Background color for incoming messages */
+    color: #333; /* Text color */
+    font-size: 14px; /* Text size */
+    line-height: 1.5; /* Spacing between lines */
+    position: relative; /* Required for the avatar and pointer */
+    word-wrap: break-word; /* Wrap long words */
+    display: flex; /* Use flexbox for better alignment */
+    flex-direction: column;
+    align-items: start;
+    /* margin-left: 60px; Leave space for the avatar */
 }
 
-#chat-page .sender-chat-message {
-    padding-left: 68px;
-    position: relative;
-}
-
+/* Avatar */
 #chat-page .chat-message i {
-    position: absolute;
+    flex-shrink: 0; /* Prevent avatar from resizing */
     width: 42px;
     height: 42px;
-    overflow: hidden;
-    left: 10px;
-    display: inline-block;
-    vertical-align: middle;
+    margin-right: 10px; /* Space between the avatar and the bubble */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     font-size: 18px;
-    line-height: 42px;
-    color: #fff;
+    color: #fff; /* Text color for initials */
     text-align: center;
-    border-radius: 50%;
-    font-style: normal;
-    text-transform: uppercase;
+    border-radius: 50%; /* Circular avatar */
+    font-style: normal; /* Prevent italicization */
+    text-transform: uppercase; /* Capitalize avatar text */
+    background-color: #f66; /* Default color for the avatar */
 }
+
+/* Pointer for the bubble (triangle) */
+#chat-page .chat-message:before {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: -10px; /* Position near the avatar */
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 10px solid #f1f0f0; /* Match bubble color */
+}
+
+/* User messages (align to the right, with avatar on the right) */
+#chat-page .chat-message.user {
+    background-color: #d4e9fff5; /* Light blue for user's messages */
+    color: #004085; /* Text color for better contrast */
+    margin-left: auto;
+    text-align: left;
+    flex-direction: column; /* Align avatar to the right */
+    align-items: end;
+}
+
+#chat-page .chat-message.user i {
+    margin-left: 10px; /* Space between avatar and bubble */
+    margin-right: 0; /* Remove right margin */
+}
+
+#chat-page .chat-message.user:before {
+    left: auto;
+    right: -10px; /* Adjust triangle position for user's messages */
+    border-right: none;
+    border-left: 10px solid #d1e7ff; /* Match user's bubble color */
+}
+
+
 
 #chat-page .chat-message span {
     color: #333;
@@ -210,6 +256,12 @@ button.accent {
 
 #chat-page .chat-message p {
     color: #43464b;
+}
+
+#chat-page .chat-message .timestamp {
+    font-size: 0.8em;
+    color: gray;
+    margin-top: 4px;
 }
 
 #messageForm .input-group input {

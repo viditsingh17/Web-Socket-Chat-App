@@ -7,14 +7,15 @@ import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
+import java.time.ZoneId;
 
 @Controller
 public class ChatController {
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
     public ChatMessage sendMessage(@Payload ChatMessage chatMessage){
-        chatMessage.setTimestamp(LocalDateTime.now());
+        chatMessage.setTimestamp(Instant.now());
         return chatMessage;
     }
 
@@ -25,7 +26,7 @@ public class ChatController {
 
         //add username in web-socket session
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
-        chatMessage.setTimestamp(LocalDateTime.now());
+        chatMessage.setTimestamp(Instant.now());
         return chatMessage;
     }
 }

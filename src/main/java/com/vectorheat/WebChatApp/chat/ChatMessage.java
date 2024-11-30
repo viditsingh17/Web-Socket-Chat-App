@@ -2,7 +2,8 @@ package com.vectorheat.WebChatApp.chat;
 
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
+
 
 @Getter
 @Setter
@@ -12,6 +13,6 @@ import java.time.LocalDateTime;
 public class ChatMessage {
     private String content; //base-64 encoded string in case of image
     private String sender;
-    private LocalDateTime timestamp;
+    private Instant timestamp;
     private MessageType type;
 }

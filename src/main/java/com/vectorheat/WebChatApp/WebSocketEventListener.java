@@ -10,7 +10,7 @@ import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Component
 @Slf4j
@@ -28,7 +28,7 @@ public class WebSocketEventListener {
             var chatMessage = ChatMessage.builder()
                     .type(MessageType.LEAVE)
                     .sender(username)
-                    .timestamp(LocalDateTime.now())
+                    .timestamp(Instant.now())
                     .build();
             messageTemplate.convertAndSend("/topic/public", chatMessage);
 
